@@ -1,0 +1,197 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/robotstadium/protos/RobotstadiumSoccerField.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/obstacles/protos/OilBarrel.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.5773502691896258 -0.5773502691896258 -0.5773502691896258 4.188785307179587
+  position 2.409999999999998 -0.05000000000000018 7.510340589262851
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RobotstadiumSoccerField {
+}
+Robot {
+  translation 0 0 0.0375
+  rotation 0 0 -1 0
+  children [
+    DEF BODY Shape {
+      appearance PBRAppearance {
+        baseColor 1 0.333333 0
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.2 0.2 0.05
+      }
+    }
+    DEF WHEEL1 HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0.05 0.06 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.05 0.06 0
+        rotation 1 -1.668220173496897e-16 9.813059844099395e-18 1.5707999999999998
+        children [
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0.333333 0 0
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+              subdivision 24
+            }
+          }
+        ]
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    DEF WHEEL2 HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0.05 -0.06 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.05 -0.06 0
+        rotation 1 6.869141890869579e-17 9.813059844099398e-18 1.5707999999999998
+        children [
+          USE WHEEL
+        ]
+        name "solid(1)"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    DEF WHEEL3 HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor -0.05 0.06 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel3"
+        }
+      ]
+      endPoint Solid {
+        translation -0.05 0.06 0
+        rotation 1 2.943917953229818e-17 7.850447875279516e-17 1.5708
+        children [
+          USE WHEEL
+        ]
+        name "solid(2)"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    DEF WHEEL4 HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor -0.05 -0.06 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel4"
+        }
+      ]
+      endPoint Solid {
+        translation -0.05 -0.06 0
+        rotation 1 -6.869141890869579e-17 0 1.5707999999999998
+        children [
+          USE WHEEL
+        ]
+        name "solid(3)"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    Camera {
+      translation 0.1 0 0.0315
+      children [
+        Pose {
+          translation -0.015 0 0
+          rotation -0.5771968951617173 -0.577656895078166 -0.5771968951617173 -2.093935
+          children [
+            Shape {
+              appearance PBRAppearance {
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.03 0.03 0.03
+              }
+            }
+          ]
+        }
+      ]
+      fieldOfView 0.5
+      width 250
+      height 125
+      antiAliasing TRUE
+      recognition Recognition {
+        maxRange 0.5
+        frameColor 0 1 0
+        frameThickness 2
+      }
+    }
+  ]
+  boundingObject USE BODY
+  physics Physics {
+    density -1
+    mass 1
+  }
+  controller "Obstacle_avoidance"
+}
+OilBarrel {
+  translation 0.76 0.12 0.15
+  height 0.3
+  radius 0.1
+}
+OilBarrel {
+  translation 1.57 -0.5 0.15
+  name "oil barrel(1)"
+  height 0.3
+  radius 0.1
+}
+OilBarrel {
+  translation 2 -0.29 0.15
+  name "oil barrel(2)"
+  height 0.3
+  radius 0.1
+}
+OilBarrel {
+  translation 2.41 -0.05 0.15
+  name "oil barrel(3)"
+  height 0.3
+  radius 0.1
+}
+OilBarrel {
+  translation 2.74 0.24 0.15
+  name "oil barrel(4)"
+  height 0.3
+  radius 0.1
+}
